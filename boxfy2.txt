@@ -1,0 +1,2326 @@
+/*
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Myapp(),
+  ));
+}
+
+class Myapp extends StatefulWidget {
+  const Myapp({Key? key}) : super(key: key);
+
+  @override
+  State<Myapp> createState() => _MyappState();
+}
+
+class _MyappState extends State<Myapp> {
+  @override
+  Widget build(BuildContext context) {
+    int i;
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.lightGreenAccent,
+        title: Text("Example of the for loop"),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            for (i = 1; i <= 5; i++) ...[
+              Card(
+                child: Text("item1\n $i"),
+              )
+            ]
+          ],
+        ),
+      ),
+    );
+  }
+}
+*/
+
+/*
+2.How to createc the slectable text in flutter.like(copy, paste, select all etc.)
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Selectable Text in Flutter"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+          padding: EdgeInsets.all(20),
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              SelectableText(
+                "Hello this is FlutterCampus, and you are making selectable and copyable text.",
+                style: TextStyle(fontSize: 18),
+              ),
+
+
+            ],
+          ),
+        )
+    );
+  }
+}
+*/
+/*
+3.Expansion panel list in flutter.
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  List<bool> expanded = [false, false];
+  //expaned status boolean for ExpansionPanel
+  //we have two panels so the bool value
+  //set bool to true, if you want to expand accordion by default
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("ExpansionPanel in Flutter"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: SingleChildScrollView(
+            child:ExpansionPanelList(
+                expansionCallback: (panelIndex, isExpanded) {
+                  setState(() {
+                    expanded[panelIndex] = !isExpanded;
+                  });
+                },
+                children:[
+                  ExpansionPanel(
+                      headerBuilder: (context, isOpen){
+                        return Padding(
+                            padding: EdgeInsets.all(15),
+                            child:Text("FAQ QUESTION")
+                        );
+                      },
+                      body: Container(
+                        child: Text("hello world"),
+                      ),
+                      isExpanded: expanded[0]
+                  ),
+
+                  ExpansionPanel(
+                      headerBuilder: (context, isOpen){
+                        return Padding(
+                            padding: EdgeInsets.all(15),
+                            child:Text("FAQ QUESTION")
+                        );
+                      },
+                      body: Container(
+                        child: Text("hello world"),
+                      ),
+                      isExpanded: expanded[1]
+                  )
+                ]
+            )
+        )
+    );
+  }
+}*/
+/*
+4.Accordion in flutter.
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  List<bool> expanded = [false, false];
+  //expaned status boolean for ExpansionPanel
+  //we have two panels so the bool value
+  //set bool to true, if you want to expand accordion by default
+
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Accordion in Flutter"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              ExpansionTile(
+                title: Text("FAQ QUESTION ONE"),
+                children: [
+                  Container(
+                    color: Colors.black12,
+                    padding:EdgeInsets.all(20),
+                    width: double.infinity,
+                    child:  Text("Answers for Question One"),
+                  )
+                ],
+              ),
+
+              Card(
+                  color: Colors.greenAccent[100],
+                  child:ExpansionTile(
+                    title: Text("FAQ QUESTION TWO"),
+
+                    children: [
+                      Container(
+                        color: Colors.black12,
+                        padding:EdgeInsets.all(20),
+                        width: double.infinity,
+                        child:  Text("Answers for Question Two"),
+                      )
+                    ],
+                  )
+              ),
+
+              ExpansionPanelList(
+                  expansionCallback: (panelIndex, isExpanded) {
+                    setState(() {
+                      expanded[panelIndex] = !isExpanded;
+                    });
+                  },
+                  animationDuration: Duration(seconds: 2),
+                  //animation duration while expanding/collapsing
+                  children:[
+                    ExpansionPanel(
+                        headerBuilder: (context, isOpen){
+                          return Padding(
+                              padding: EdgeInsets.all(15),
+                              child:Text("FAQ QUESTIOn THREE")
+                          );
+                        },
+                        body: Container(
+                          padding: EdgeInsets.all(20),
+                          color: Colors.redAccent[100],
+                          width: double.infinity,
+                          child: Text("hello world"),
+                        ),
+                        isExpanded: expanded[0]
+                    ),
+
+                    ExpansionPanel(
+                        headerBuilder: (context, isOpen){
+                          return Padding(
+                              padding: EdgeInsets.all(15),
+                              child:Text("FAQ QUESTIOn FOUR")
+                          );
+                        },
+                        body: Container(
+                          padding: EdgeInsets.all(20),
+                          color: Colors.blueAccent[100],
+                          width: double.infinity,
+                          child: Text("hello world"),
+                        ),
+                        isExpanded: expanded[1]
+                    )
+                  ]
+              )
+            ],
+          ),
+        )
+    );
+  }
+}*/
+/*
+5.How to Add Expandable Navigation Menu on Drawer in Flutter
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  //key for scaffold, required to manually open/close drawer
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        key: scaffoldKey,
+        appBar: AppBar(
+          title: Text("Expansion Menu in Flutter"),
+        ),
+        drawer: Drawer(
+          child: SafeArea(
+              child:Column(
+                children: [
+                  ExpansionTile(
+                    title: Text("Parent Category 1"),
+                    leading: Icon(Icons.person), //add icon
+                    childrenPadding: EdgeInsets.only(left:60), //children padding
+                    children: [
+                      ListTile(
+                        title: Text("Child Category 1"),
+                        onTap: (){
+                          //action on press
+                        },
+                      ),
+
+                      ListTile(
+                        title: Text("Child Category 2"),
+                        onTap: (){
+                          //action on press
+                        },
+                      ),
+
+                      //more child menu
+                    ],
+                  ),
+
+
+                  ExpansionTile(
+                    title: Text("Parent Category 2"),
+                    leading: Icon(Icons.person), //add icon
+                    childrenPadding: EdgeInsets.only(left:60), //children padding
+                    children: [
+                      ListTile(
+                        title: Text("Child Category 1"),
+                        onTap: (){
+                          //action on press
+                        },
+                      ),
+
+                      ListTile(
+                        title: Text("Child Category 2"),
+                        onTap: (){
+                          //action on press
+                        },
+                      ),
+
+                      //more child menu
+                    ],
+                  )
+                ],
+              )
+          ),
+        ),
+
+        body: Container()
+    );
+  }
+}
+*/
+/*
+ 6.How to Underline Text in Flutter
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+            title: Text("Underline Text in Flutter"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:30, left:20, right:20),
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                //underline whole text
+                Text("Hello World ! This is FlutterCampus",
+                    style: TextStyle(decoration: TextDecoration.underline, fontSize: 30)
+                ),
+
+                Text.rich( //underline partially
+                    TextSpan(
+                        style: TextStyle(fontSize: 30), //global text style
+                        children: [
+                          TextSpan(text:"Hello World ! "),
+                          TextSpan(text:"This is Flutter Campus", style: TextStyle(
+                              decoration:TextDecoration.underline
+                          )), //partial text style
+                        ]
+                    )
+                )
+
+
+              ],)
+        )
+    );
+  }
+}*/
+/*
+6.How to Disable Back Button in Flutter
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return  WillPopScope(
+        onWillPop: () async{
+          return false;
+        },
+        child:Scaffold(
+            appBar: AppBar(
+                title: Text("Disable Back Button"),
+                backgroundColor: Colors.redAccent
+            ),
+            body: Container()
+        )
+    );
+  }
+}
+*/
+/*
+8.How to Autofill OTP Code from SMS in Flutter
+import 'package:flutter/material.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
+import 'package:telephony/telephony.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  Telephony telephony = Telephony.instance;
+  OtpFieldController otpbox = OtpFieldController();
+
+  @override
+  void initState() {
+    telephony.listenIncomingSms(
+      onNewMessage: (SmsMessage message) {
+        print(message.address); //+977981******67, sender nubmer
+        print(message.body); //Your OTP code is 34567
+        print(message.date); //1659690242000, timestamp
+
+        String sms = message.body.toString(); //get the message
+
+        if(message.address == "+977981******67"){
+          //verify SMS is sent for OTP with sender number
+          String otpcode = sms.replaceAll(new RegExp(r'[^0-9]'),'');
+          //prase code from the OTP sms
+          otpbox.set(otpcode.split(""));
+          //split otp code to list of number
+          //and populate to otb boxes
+
+          setState(() {
+            //refresh UI
+          });
+
+        }else{
+          print("Normal message.");
+        }
+      },
+      listenInBackground: false,
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+            title: Text("Autofill OTP From SMS"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:50, left:20, right:20),
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Center(
+                  child: Text("Enter OTP Code", style: TextStyle(fontSize: 20),),
+                ),
+
+                Padding(padding: EdgeInsets.all(20)),
+
+                OTPTextField(
+                  controller: otpbox,
+                  length: 5,
+                  width: MediaQuery.of(context).size.width,
+                  fieldWidth: 50,
+                  style: TextStyle(
+                      fontSize: 17
+                  ),
+                  textFieldAlignment: MainAxisAlignment.spaceAround,
+                  fieldStyle: FieldStyle.box,
+                  onCompleted: (pin) {
+                    print("Entered OTP Code: $pin");
+                  },
+                ),
+
+              ],)
+        )
+    );
+  }
+}
+*/
+/*
+8.Switch listtile
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  bool s1 = false;
+  //true for enabled switch.
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+            title: Text("SwitchListTile in Flutter"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                SwitchListTile( //switch at left side of label
+                    value: s1,
+                    controlAffinity: ListTileControlAffinity.leading,
+                    onChanged: (bool value){
+                      setState(() {
+                        s1 = value; //update value when sitch changed
+                      });
+                    },
+                    title: Text("Disable Daily Alarm")
+                ),
+
+              ],)
+        )
+    );
+  }
+}*/
+/*
+9.How to Check Internet Connection Type: Mobile Data/Wifi in Flutter
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  String cType = "none";
+
+  @override
+  void initState() {
+    checkConnection();
+
+    //listen to the network connection type change
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.mobile) {
+        cType = "Mobile Data";
+      } else if (result == ConnectivityResult.wifi) {
+        cType = "Wifi Network";
+      }else if(result == ConnectivityResult.ethernet){
+        cType = "Ethernet Network";
+      }else if(result == ConnectivityResult.bluetooth){
+        cType = "Blutooth Data connection";
+      }else{
+        cType = "none";
+      }
+
+      setState(() {
+        //refresh UI
+      });
+    });
+
+    super.initState();
+  }
+
+  checkConnection() async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile) {
+      cType = "Mobile Data";
+    } else if (connectivityResult == ConnectivityResult.wifi) {
+      cType = "Wifi Network";
+    }else if(connectivityResult == ConnectivityResult.ethernet){
+      cType = "Ethernet Network";
+    }else if(connectivityResult == ConnectivityResult.bluetooth){
+      cType = "Blutooth Data connection";
+    }else{
+      cType = "none";
+    }
+
+    setState(() {
+      //refresh UI
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return  Scaffold(
+        appBar: AppBar(
+            title: Text("Check Connection Type"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Text("Connection Type: $cType", style: TextStyle(fontSize: 20),),
+              ],)
+        )
+    );
+  }
+}
+*/
+
+/*
+10.How to pick the image from gallery in flutter
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  ImagePicker picker = ImagePicker();
+  XFile? image;
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+            title: Text("Image Picker from Gallery"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+
+                ElevatedButton(
+                    onPressed: () async {
+                      image = await picker.pickImage(source: ImageSource.gallery);
+                      setState(() {
+                        //update UI
+                      });
+                    },
+                    child: Text("Pick Image")
+                ),
+
+                image == null?Container():
+                Image.file(File(image!.path))
+
+              ],)
+        )
+    );
+  }
+}*/
+/*
+11.How to Open Email App With Address, Subject and Body in Flutte
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Open Mailer"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: ()async{
+                      String email = Uri.encodeComponent("mail@fluttercampus.com");
+                      String subject = Uri.encodeComponent("Hello Flutter");
+                      String body = Uri.encodeComponent("Hi! I'm Flutter Developer");
+                      print(subject); //output: Hello%20Flutter
+                      Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
+                      if (await launchUrl(mail)) {
+                        //email app opened
+                      }else{
+                        //email app is not opened
+                      }
+                    },
+                    child: Text("Mail Us Now")
+                )
+              ],)
+        )
+    );
+  }
+}
+*/
+/*
+13.How to Open Phone Dialer with Number in Flutter
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Open Phone Dialer"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: ()async{
+                      Uri phoneno = Uri.parse('tel:+97798345348734');
+                      if (await launchUrl(phoneno)) {
+                        //dialer opened
+                      }else{
+                        //dailer is not opened
+                      }
+                    },
+                    child: Text("Call Us Now")
+                )
+              ],)
+        )
+    );
+  }
+}
+*/
+/*
+14.How to Open SMS App with Number and Text in Flutter
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Open SMS App"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+            padding: EdgeInsets.only(top:20, left:20, right:20),
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: ()async{
+                      Uri sms = Uri.parse('sms:101022?body=your+text+here');
+                      if (await launchUrl(sms)) {
+                        //app opened
+                      }else{
+                        //app is not opened
+                      }
+                    },
+                    child: Text("Send Us SMS")
+                )
+              ],)
+        )
+    );
+  }
+}*/
+
+/*
+14.Auto resize text
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+
+
+Future<void> main() async {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Auto Resize Text"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+          padding: EdgeInsets.all(30),
+          child: Column(
+              children:[
+                AutoSizeText(
+                  "Lorem Ipsum is simply dummy text of the printing" +
+                      "and typesetting industry. Lorem Ipsum has",
+                  maxLines:5,
+                  style: TextStyle(fontSize:30),
+                ),
+
+                AutoSizeText(
+                  "Lorem Ipsum is simply dummy text of the printing" +
+                      "and typesetting industry. Lorem Ipsum has been " +
+                      "the industry's standard dummy text ever since the 1500s",
+                  maxLines:4,
+                  style: TextStyle(fontSize:30),
+                ),
+
+              ]
+          )
+      ),
+
+    );
+  }
+}
+*/
+
+/*
+15.check device is online or not
+import 'dart:async';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
+
+
+Future<void> main() async {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  StreamSubscription? connection;
+  bool isoffline = false;
+
+
+
+  @override
+  void initState() {
+    connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      // whenevery connection status is changed.
+      if(result == ConnectivityResult.none){
+        //there is no any connection
+        setState(() {
+          isoffline = true;
+        });
+      }else if(result == ConnectivityResult.mobile){
+        //connection is mobile data network
+        setState(() {
+          isoffline = false;
+        });
+      }else if(result == ConnectivityResult.wifi){
+        //connection is from wifi
+        setState(() {
+          isoffline = false;
+        });
+      }else if(result == ConnectivityResult.ethernet){
+        //connection is from wired connection
+        setState(() {
+          isoffline = false;
+        });
+      }else if(result == ConnectivityResult.bluetooth){
+        //connection is from bluetooth threatening
+        setState(() {
+          isoffline = false;
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    connection!.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Check Internet Connection"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+          alignment: Alignment.center,
+          child: Column(
+              children:[
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(bottom:30),
+                  color: isoffline?Colors.red:Colors.lightGreen,
+                  //red color on offline, green on online
+                  padding:EdgeInsets.all(10),
+                  child: Text(isoffline?"Device is Offline":"Device is Online",
+                    style: TextStyle(
+                        fontSize: 20, color: Colors.white
+                    ),),
+                ),
+
+                ElevatedButton(onPressed: () async {
+                  var result = await Connectivity().checkConnectivity();
+                  if(result == ConnectivityResult.mobile) {
+                    print("Internet connection is from Mobile data");
+                  }else if(result == ConnectivityResult.wifi) {
+                    print("internet connection is from wifi");
+                  }else if(result == ConnectivityResult.ethernet){
+                    print("internet connection is from wired cable");
+                  }else if(result == ConnectivityResult.bluetooth){
+                    print("internet connection is from bluethooth threatening");
+                  }else if(result == ConnectivityResult.none){
+                    print("No internet connection");
+                  }
+                },
+                    child: Text("Check Internet Connection")
+                )
+              ]
+          )
+      ),
+
+    );
+  }
+}
+
+*/
+/*
+15.Turn on gps in flutter app
+import 'package:app_settings/app_settings.dart';
+import 'package:flutter/material.dart';
+import 'package:location/location.dart';
+
+Future<void> main() async {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Turn On GPS in Flutter"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+          alignment: Alignment.center,
+          child: Column(
+              children:[
+
+                ElevatedButton(
+                    onPressed: () async {
+                      Location location = new Location();
+                      bool ison = await location.serviceEnabled();
+                      if (!ison) { //if defvice is off
+                        bool isturnedon = await location.requestService();
+                        if (isturnedon) {
+                          print("GPS device is turned ON");
+                        }else{
+                          print("GPS Device is still OFF");
+                        }
+                      }
+                    },
+                    child: Text("Turn On GPS | Location Package")
+                ),
+
+                ElevatedButton(
+                    onPressed: () async {
+                      AppSettings.openLocationSettings();
+                    },
+                    child: Text("Turn On GPS | App Setting Package")
+                )
+              ]
+          )
+      ),
+
+    );
+  }
+}*/
+
+/*
+16.Loading camera in flutter
+import 'dart:io';
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+
+Future<void> main() async {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  List<CameraDescription>? cameras; //list out the camera available
+  CameraController? controller; //controller for camera
+  XFile? image; //for captured image
+
+  @override
+  void initState() {
+    loadCamera();
+    super.initState();
+  }
+
+  loadCamera() async {
+    cameras = await availableCameras();
+    if(cameras != null){
+      controller = CameraController(cameras![0], ResolutionPreset.max);
+      //cameras[0] = first camera, change to 1 to another camera
+
+      controller!.initialize().then((_) {
+        if (!mounted) {
+          return;
+        }
+        setState(() {});
+      });
+    }else{
+      print("NO any camera found");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Capture Image from Camera"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+          child: Column(
+              children:[
+                Container(
+                    height:300,
+                    width:400,
+                    child: controller == null?
+                    Center(child:Text("Loading Camera...")):
+                    !controller!.value.isInitialized?
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ):
+                    CameraPreview(controller!)
+                ),
+
+                ElevatedButton.icon( //image capture button
+                  onPressed: () async{
+                    try {
+                      if(controller != null){ //check if contrller is not null
+                        if(controller!.value.isInitialized){ //check if controller is initialized
+                          image = await controller!.takePicture(); //capture image
+                          setState(() {
+                            //update UI
+                          });
+                        }
+                      }
+                    } catch (e) {
+                      print(e); //show error
+                    }
+                  },
+                  icon: Icon(Icons.camera),
+                  label: Text("Capture"),
+                ),
+
+                Container( //show captured image
+                  padding: EdgeInsets.all(30),
+                  child: image == null?
+                  Text("No image captured"):
+                  Image.file(File(image!.path), height: 300,),
+                  //display captured image
+                )
+              ]
+          )
+      ),
+
+    );
+  }
+}*/
+/*
+17.How to add the action button in notification bar
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  AwesomeNotifications().initialize(
+      'resource://drawable/notification_icon',
+      [            // notification icon
+        NotificationChannel(
+          channelGroupKey: 'basic_test',
+          channelKey: 'basic',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          channelShowBadge: true,
+          importance: NotificationImportance.High,
+          enableVibration: true,
+        ),
+
+      ]
+  );
+
+  runApp(MyApp()); //run your app.
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+
+    AwesomeNotifications().actionStream.listen((action) {
+      if(action.buttonKeyPressed == "open"){
+        print("Open button is pressed");
+      }else if(action.buttonKeyPressed == "delete"){
+        print("Delete button is pressed.");
+      }else{
+        print(action.payload); //notification was pressed
+      }
+    });
+
+    return MaterialApp(
+        home: Home()
+    );
+  }
+}
+
+class Home extends  StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Local Notification in Flutter"),
+        backgroundColor: Colors.deepOrangeAccent,
+      ),
+      body: Container(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  bool isallowed = await AwesomeNotifications().isNotificationAllowed();
+                  if (!isallowed) {
+                    //no permission of local notification
+                    AwesomeNotifications().requestPermissionToSendNotifications();
+                  }else{
+                    //show notification
+                    AwesomeNotifications().createNotification(
+                        content: NotificationContent( //simgple notification
+                          id: 123,
+                          channelKey: 'basic', //set configuration wuth key "basic"
+                          title: 'Welcome to FlutterCampus.com',
+                          body: 'This simple notification with action buttons in Flutter App',
+                          payload: {"name":"FlutterCampus"},
+                          autoDismissible: false,
+                        ),
+
+                        actionButtons: [
+                          NotificationActionButton(
+                            key: "open",
+                            label: "Open File",
+                          ),
+
+                          NotificationActionButton(
+                            key: "delete",
+                            label: "Delete File",
+                          )
+                        ]
+                    );
+                  }
+                },
+                child: Text("Show Notification With Button")
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+*/
+
+/*
+18.How to video play in flutter
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+
+main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  late VideoPlayerController controller;
+
+  @override
+  void initState() {
+    loadVideoPlayer();
+    super.initState();
+  }
+
+  loadVideoPlayer(){
+    controller = VideoPlayerController.asset('assets/videos/video.mp4');
+    controller.addListener(() {
+      setState(() {});
+    });
+    controller.initialize().then((value){
+      setState(() {});
+    });
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text("Play Video from Assets/URL"),
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Container(
+          child: Column(
+              children:[
+                AspectRatio(
+                  aspectRatio: controller.value.aspectRatio,
+                  child: VideoPlayer(controller),
+                ),
+
+                Container( //duration of video
+                  child: Text("Total Duration: " + controller.value.duration.toString()),
+                ),
+
+                Container(
+                    child: VideoProgressIndicator(
+                        controller,
+                        allowScrubbing: true,
+                        colors:VideoProgressColors(
+                          backgroundColor: Colors.redAccent,
+                          playedColor: Colors.green,
+                          bufferedColor: Colors.purple,
+                        )
+                    )
+                ),
+
+                Container(
+                  child: Row(
+                    children: [
+                      IconButton(
+                          onPressed: (){
+                            if(controller.value.isPlaying){
+                              controller.pause();
+                            }else{
+                              controller.play();
+                            }
+
+                            setState(() {
+
+                            });
+                          },
+                          icon:Icon(controller.value.isPlaying?Icons.pause:Icons.play_arrow)
+                      ),
+
+                      IconButton(
+                          onPressed: (){
+                            controller.seekTo(Duration(seconds: 0));
+
+                            setState(() {
+
+                            });
+                          },
+                          icon:Icon(Icons.stop)
+                      )
+                    ],
+                  ),
+                )
+              ]
+          )
+      ),
+    );
+  }
+}
+*/
+/*
+19.current volume in flutter
+import 'package:flutter/material.dart';
+import 'package:perfect_volume_control/perfect_volume_control.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Home()
+    );
+  }
+}
+
+class Home extends  StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  double currentvol = 0.5;
+
+  @override
+  void initState() {
+    PerfectVolumeControl.hideUI = false; //set if system UI is hided or not on volume up/down
+    Future.delayed(Duration.zero,() async {
+      currentvol = await PerfectVolumeControl.getVolume();
+      setState(() {
+        //refresh UI
+      });
+    });
+
+    PerfectVolumeControl.stream.listen((volume) {
+      setState(() {
+        currentvol = volume;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Increase/Decrease Volume in Flutter"),
+          backgroundColor: Colors.redAccent,
+        ),
+
+        body: Container(
+            margin: EdgeInsets.only(top:100),
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+
+                Text("Current Volumen: $currentvol"),
+
+                Divider(),
+
+                Slider(
+                  value: currentvol,
+                  onChanged: (newvol){
+                    currentvol = newvol;
+                    PerfectVolumeControl.setVolume(newvol); //set new volume
+                    setState(() {
+
+                    });
+                  },
+                  min: 0, //
+                  max:  1,
+                  divisions: 100,
+                )
+              ],
+            )
+        )
+
+    );
+  }
+}*/
+/*
+20.Audio play from the asset
+import 'dart:typed_data';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Home()
+    );
+  }
+}
+
+class Home extends  StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  AudioPlayer player = AudioPlayer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("Play Sound in Flutter App"),
+            backgroundColor: Colors.redAccent
+        ),
+        body: Container(
+            margin: EdgeInsets.only(top:50),
+            child: Wrap(
+              spacing: 10,
+              children: [
+                ElevatedButton.icon(
+                    onPressed: () async {
+                      String audioasset = "assets/audio/ambulance_sound.mp3";
+                      ByteData bytes = await rootBundle.load(audioasset); //load sound from assets
+                      Uint8List  soundbytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+                      int result = await player.playBytes(soundbytes);
+                      if(result == 1){ //play success
+                        print("Sound playing successful.");
+                      }else{
+                        print("Error while playing sound.");
+                      }
+                    },
+                    icon: Icon(Icons.play_arrow),
+                    label:Text("Play")
+                ),
+
+                ElevatedButton.icon(
+                    onPressed: () async {
+                      int result = await player.stop();
+
+                      // You can pasue the player
+                      // int result = await player.pause();
+
+                      if(result == 1){ //stop success
+                        print("Sound playing stopped successfully.");
+                      }else{
+                        print("Error on while stopping sound.");
+                      }
+                    },
+                    icon: Icon(Icons.stop),
+                    label:Text("Stop")
+                ),
+
+              ],
+            )
+
+        )
+    );
+  }
+}
+*/
+/*
+// import 'dart:typed_data';
+//
+// import 'package:audioplayers/audioplayers.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+//
+// void main() {
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         home: Home()
+//     );
+//   }
+// }
+//
+// class Home extends  StatefulWidget {
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
+//
+// class _HomeState extends State<Home> {
+//
+//   int maxduration = 100;
+//   int currentpos = 0;
+//   String currentpostlabel = "00:00";
+//   String audioasset = "assets/audio/red-indian-music.mp3";
+//   bool isplaying = false;
+//   bool audioplayed = false;
+//   late Uint8List audiobytes;
+//
+//   AudioPlayer player = AudioPlayer();
+//
+//   @override
+//   void initState() {
+//     Future.delayed(Duration.zero, () async {
+//
+//       ByteData bytes = await rootBundle.load(audioasset); //load audio from assets
+//       audiobytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+//       //convert ByteData to Uint8List
+//
+//       player.onDurationChanged.listen((Duration d) { //get the duration of audio
+//         maxduration = d.inMilliseconds;
+//         setState(() {
+//
+//         });
+//       });
+//
+//       player.onAudioPositionChanged.listen((Duration  p){
+//         currentpos = p.inMilliseconds; //get the current position of playing audio
+//
+//         //generating the duration label
+//         int shours = Duration(milliseconds:currentpos).inHours;
+//         int sminutes = Duration(milliseconds:currentpos).inMinutes;
+//         int sseconds = Duration(milliseconds:currentpos).inSeconds;
+//
+//         int rhours = shours;
+//         int rminutes = sminutes - (shours * 60);
+//         int rseconds = sseconds - (sminutes * 60 + shours * 60 * 60);
+//
+//         currentpostlabel = "$rhours:$rminutes:$rseconds";
+//
+//         setState(() {
+//           //refresh the UI
+//         });
+//       });
+//
+//     });
+//     super.initState();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//             title: Text("Play Audio in Flutter App"),
+//             backgroundColor: Colors.redAccent
+//         ),
+//         body: Container(
+//             margin: EdgeInsets.only(top:50),
+//             child: Column(
+//               children: [
+//
+//                 Container(
+//                   child: Text(currentpostlabel, style: TextStyle(fontSize: 25),),
+//                 ),
+//
+//                 Container(
+//                     child: Slider(
+//                       value: double.parse(currentpos.toString()),
+//                       min: 0,
+//                       max: double.parse(maxduration.toString()),
+//                       divisions: maxduration,
+//                       label: currentpostlabel,
+//                       onChanged: (double value) async {
+//                         int seekval = value.round();
+//                         int result = await player.seek(Duration(milliseconds: seekval));
+//                         if(result == 1){ //seek successful
+//                           currentpos = seekval;
+//                         }else{
+//                           print("Seek unsuccessful.");
+//                         }
+//                       },
+//                     )
+//                 ),
+//
+//                 Container(
+//                   child: Wrap(
+//                     spacing: 10,
+//                     children: [
+//                       ElevatedButton.icon(
+//                           onPressed: () async {
+//                             if(!isplaying && !audioplayed){
+//                               int result = await player.playBytes(audiobytes);
+//                               if(result == 1){ //play success
+//                                 setState(() {
+//                                   isplaying = true;
+//                                   audioplayed = true;
+//                                 });
+//                               }else{
+//                                 print("Error while playing audio.");
+//                               }
+//                             }else if(audioplayed && !isplaying){
+//                               int result = await player.resume();
+//                               if(result == 1){ //resume success
+//                                 setState(() {
+//                                   isplaying = true;
+//                                   audioplayed = true;
+//                                 });
+//                               }else{
+//                                 print("Error on resume audio.");
+//                               }
+//                             }else{
+//                               int result = await player.pause();
+//                               if(result == 1){ //pause success
+//                                 setState(() {
+//                                   isplaying = false;
+//                                 });
+//                               }else{
+//                                 print("Error on pause audio.");
+//                               }
+//                             }
+//                           },
+//                           icon: Icon(isplaying?Icons.pause:Icons.play_arrow),
+//                           label:Text(isplaying?"Pause":"Play")
+//                       ),
+//
+//                       ElevatedButton.icon(
+//                           onPressed: () async {
+//                             int result = await player.stop();
+//                             if(result == 1){ //stop success
+//                               setState(() {
+//                                 isplaying = false;
+//                                 audioplayed = false;
+//                                 currentpos = 0;
+//                               });
+//                             }else{
+//                               print("Error on stop audio.");
+//                             }
+//                           },
+//                           icon: Icon(Icons.stop),
+//                           label:Text("Stop")
+//                       ),
+//                     ],
+//                   ),
+//                 )
+//
+//               ],
+//             )
+//
+//         )
+//     );
+//   }
+// }*/
+/*
+21. Flutter App Example with "Scroll Back to Top" Button:
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home: Home()
+    );
+  }
+}
+
+class Home extends  StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  ScrollController scrollController = ScrollController();
+  bool showbtn = false;
+
+  List<String> countries = ["USA", "United Kingdom", "China", "Russia", "Brazil",
+    "India", "Pakistan", "Nepal", "Bangladesh", "Sri Lanka",
+    "Japan", "South Korea", "Mongolia"];
+
+  @override
+  void initState() {
+    scrollController.addListener(() { //scroll listener
+      double showoffset = 10.0; //Back to top botton will show on scroll offset 10.0
+
+      if(scrollController.offset > showoffset){
+        showbtn = true;
+        setState(() {
+          //update state
+        });
+      }else{
+        showbtn = false;
+        setState(() {
+          //update state
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("Scroll Back to Top Button"),
+            backgroundColor: Colors.redAccent
+        ),
+        floatingActionButton: AnimatedOpacity(
+          duration: Duration(milliseconds: 1000),  //show/hide animation
+          opacity: showbtn?1.0:0.0, //set obacity to 1 on visible, or hide
+          child: FloatingActionButton(
+            onPressed: () {
+              scrollController.animateTo( //go to top of scroll
+                  0,  //scroll offset to go
+                  duration: Duration(milliseconds: 500), //duration of scroll
+                  curve:Curves.fastOutSlowIn //scroll type
+              );
+            },
+            child: Icon(Icons.arrow_upward),
+            backgroundColor: Colors.redAccent,
+          ),
+        ),
+        body: SingleChildScrollView(
+            controller: scrollController, //set controller
+            child:Container(
+                child:Column(
+                  children: countries.map((country){
+                    return Card(
+                        child:ListTile(
+                            title: Text(country)
+                        )
+                    );
+                  }).toList(),
+                )
+            )
+        )
+    );
+  }
+}
+*/
+/*
+22.How to generate random color in flutter.
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+void main() {
+  runApp(
+      MaterialApp(
+          home: MyApp()
+      )
+  );
+}
+
+class MyApp extends StatefulWidget{
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Color cone = Colors.blueAccent;
+  Color ctwo = Colors.redAccent;
+
+  //for random colors from selected list of colors
+  List<Color> colors = [Colors.redAccent, Colors.teal, Colors.green, Colors.grey];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title:Text("Generate Random Color"), //appbar title
+            backgroundColor: Colors.redAccent //appbar background color
+        ),
+        backgroundColor: cone,
+        body: Container(
+            height: 130,
+            color: ctwo,
+            alignment:Alignment.topCenter,
+            padding: EdgeInsets.all(15),
+            child: Column(
+                children:[
+
+                  ElevatedButton(
+                      onPressed:(){
+                        Random random = Random();
+                        Color tempcol = Color.fromRGBO(
+                          random.nextInt(255),
+                          random.nextInt(255),
+                          random.nextInt(255),
+                          1,
+                        );
+
+                        setState(() {
+                          cone = tempcol;
+                        });
+                      },
+                      child: Text("Random Scaffold Color")
+                  ),
+
+                  ElevatedButton(
+                      onPressed:(){
+                        Random random = Random();
+                        int cindex = random.nextInt(colors.length);
+                        Color tempcol = colors[cindex];
+
+                        setState(() {
+                          ctwo = tempcol;
+                        });
+                      },
+                      child: Text("Random Container Color")
+                  ),
+                ]
+            )
+        )
+    );
+  }
+}
+*/
+// 23.How to add the list in flutter.
+// import 'package:flutter/material.dart';
+// void main() {
+//   runApp(
+//       MaterialApp(
+//         home: MyApp(),
+//       )/
+//   );
+// }
+//
+// class MyApp extends StatefulWidget{
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//   List<Person> persons= [];
+//
+//   @override
+//   void initState() {
+//     //adding item to list, you can add using json from network
+//     persons.add(Person(id:"1", name:"Hari Prasad Chaudhary", phone:"9812122233", address:"Kathmandu, Nepal"));
+//     persons.add(Person(id:"2", name:"Krishna Karki", phone:"9812122244", address:"Pokhara, Nepal"));
+//     persons.add(Person(id:"3", name:"Ujjwal Joshi", phone:"98121224444", address:"Bangalore, India"));
+//     persons.add(Person(id:"4", name:"Samir Hussain Khan", phone:"9812122255", address:"Karachi, Pakistan"));
+//
+//     super.initState();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title:Text("Add And Delete List"),
+//           backgroundColor: Colors.redAccent,
+//         ),
+//         body: SingleChildScrollView(
+//           child: Container(
+//             padding: EdgeInsets.all(10),
+//             child: Column(
+//               children: persons.map((personone){
+//                 return Container(
+//                   child: Card(
+//                     child:ListTile(
+//                       title: Text(personone.name),
+//                       subtitle: Text(personone.phone + "\n" + personone.address),
+//                       trailing: ElevatedButton(
+//                         style: ElevatedButton.styleFrom(
+//                             primary: Colors.redAccent
+//                         ),
+//                         child: Icon(Icons.delete),
+//                         onPressed: (){
+//                           //delete action for this button
+//                           persons.removeWhere((element){
+//                             return element.id == personone.id;
+//                           }); //go through the loop and match content to delete from list
+//                           setState(() {
+//                             //refresh UI after deleting element from list
+//                           });
+//                         },
+//                       ),
+//                     ),
+//                   ),
+//
+//                 );
+//               }).toList(),
+//             ),
+//           ),
+//         )
+//
+//     );
+//   }
+// }
+//
+// class Person{ //modal class for Person object
+//   String id, name, phone, address;
+//   Person({required this.id, required this.name, required this.phone, required this.address});
+// }
+/*
+23.bottomnavbar
+import 'package:flutter/material.dart';
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      floatingActionButton:FloatingActionButton( //Floating action button on Scaffold
+        onPressed: (){
+          //code to execute on button press
+        },
+        child: Icon(Icons.send), //icon inside button
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      //floating action button position to center
+
+      bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
+        color:Colors.redAccent,
+        shape: CircularNotchedRectangle(), //shape of notch
+        notchMargin: 5, //notche margin between floating button and bottom appbar
+        child: Row( //children inside bottom appbar
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(icon: Icon(Icons.menu, color: Colors.white,), onPressed: () {},),
+            IconButton(icon: Icon(Icons.search, color: Colors.white,), onPressed: () {},),
+            IconButton(icon: Icon(Icons.print, color: Colors.white,), onPressed: () {},),
+            IconButton(icon: Icon(Icons.people, color: Colors.white,), onPressed: () {},),
+          ],
+        ),
+      ),
+    );
+  }
+}*/
+
+/*
+24.SpeedDial in flutter
+import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
+void main(){
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Home(),
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+        appBar: AppBar(
+          title: Text("Speed Dial Floating Action Menu"),
+          backgroundColor: Colors.deepOrangeAccent,
+        ),
+        floatingActionButton: SpeedDial(
+
+          icon: Icons.menu, //icon on Floating action button
+          activeIcon: Icons.close, //icon when menu is expanded on button
+          backgroundColor: Colors.deepOrangeAccent, //background color of button
+          foregroundColor: Colors.white, //font color, icon color in button
+          activeBackgroundColor: Colors.deepPurpleAccent, //background color when menu is expanded
+          activeForegroundColor: Colors.white,
+          buttonSize: 56.0, //button size
+          visible: true,
+          closeManually: false,
+          curve: Curves.bounceIn,
+          overlayColor: Colors.black,
+          overlayOpacity: 0.5,
+          onOpen: () => print('OPENING DIAL'), // action when menu opens
+          onClose: () => print('DIAL CLOSED'), //action when menu closes
+
+          elevation: 8.0, //shadow elevation of button
+          shape: CircleBorder(), //shape of button
+
+          children: [
+            SpeedDialChild( //speed dial child
+              child: Icon(Icons.accessibility),
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              label: 'First Menu Child',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => print('FIRST CHILD'),
+              onLongPress: () => print('FIRST CHILD LONG PRESS'),
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.brush),
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              label: 'Second Menu Child',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => print('SECOND CHILD'),
+              onLongPress: () => print('SECOND CHILD LONG PRESS'),
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.keyboard_voice),
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.green,
+              label: 'Third Menu Child',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => print('THIRD CHILD'),
+              onLongPress: () => print('THIRD CHILD LONG PRESS'),
+            ),
+
+            //add more menu item children here
+          ],
+        ),
+
+        body: Container()
+    );
+  }
+}
+*/
+/*
+25.show toast meassage in flutter
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Test App",
+      home: ShowToast(),
+    );
+  }
+}
+
+class ShowToast extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Show Toast on Flutter"),
+          backgroundColor: Colors.redAccent,
+        ),
+        body: Container(
+          height: 150,
+          alignment: Alignment.center, //align content to center
+          padding: EdgeInsets.all(20),
+          child:RaisedButton(
+            onPressed: (){
+              showToastMessage("Show Toast Message on Flutter");
+            },
+            colorBrightness: Brightness.dark, //background color is dark
+            color: Colors.redAccent, //set background color is redAccent
+            child: Text("Show Toast Message"),
+          ),
+        )
+    );
+  }
+
+  //create this function, so that, you needn't to configure toast every time
+  void showToastMessage(String message){
+    Fluttertoast.showToast(
+        msg: message, //message to show toast
+        toastLength: Toast.LENGTH_LONG, //duration for message to show
+        gravity: ToastGravity.CENTER, //where you want to show, top, bottom
+        timeInSecForIosWeb: 1, //for iOS only
+        //backgroundColor: Colors.red, //background Color for message
+        textColor: Colors.white, //message text color
+        fontSize: 16.0 //message font size
+    );
+  }
+
+}*/
+
+
+
